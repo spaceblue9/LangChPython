@@ -22,7 +22,7 @@ embedding = TogetherEmbeddings(
     model="togethercomputer/m2-bert-80M-8k-retrieval",
 )
 
-# embeddings = OllamaEmbeddings(
+# embeddings = OllamaEmbeddings(  //สำหรับ Local EMber Ollma
 #     model="nomic-embed-text:latest"
 # )
 
@@ -35,7 +35,7 @@ def  get_document_from_web(url):
         chunk_overlap=20,
     )
     splitDocs = splitter.split_documents(docs)
-    # print(len(splitDocs))
+    #print(len(splitDocs))
 
     return splitDocs
 
@@ -47,7 +47,8 @@ def create_db(docs):
     vectorStore = FAISS.from_documents(docs, embedding = embedding) 
     return vectorStore
 
-docs = get_document_from_web("https://python.langchain.com/v0.1/docs/expression_language/")
+#docs = get_document_from_web("https://python.langchain.com/v0.1/docs/expression_language/")
+docs = get_document_from_web("https://medium.com/@kasperjuunge/how-to-use-neo4j-with-python-1818159634cd")
 vectorStore = create_db(docs)
 
 
@@ -72,7 +73,8 @@ chain = create_stuff_documents_chain(
     )
 
 response = chain.invoke({
-    'input':"What is LCEL",
+    #'input':"What is LCEL",
+    'input':"Neo4j Query",
     'context': docs
 })
 print(response)

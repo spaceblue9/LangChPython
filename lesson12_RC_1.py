@@ -48,7 +48,7 @@ docs = get_document_from_web("https://python.langchain.com/v0.1/docs/expression_
 
 index_name = "langchain-test-index"
 # Connect to Pinecone index and insert the chunked docs as contents
-#db = PineconeVectorStore.from_documents(docs, embedding, index_name=index_name)
+#db = PineconeVectorStore.from_documents(docs, embedding, index_name=index_name) // กรณียังไม่ได้ Up ข้อมูลให้เปิด Comment
 
 # Connect to Pinecone index with the existing index name
 db = PineconeVectorStore(embedding = embedding, index_name=index_name)

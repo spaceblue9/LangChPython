@@ -15,6 +15,11 @@ from langchain.chains import create_retrieval_chain
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import MessagesPlaceholder
+from langchain_together import TogetherEmbeddings
+
+embedding = TogetherEmbeddings(
+    model="togethercomputer/m2-bert-80M-8k-retrieval",
+)
 
 
 
@@ -32,7 +37,7 @@ def  get_document_from_web(url):
     return splitDocs
 
 def create_db(docs):
-    embedding = OpenAIEmbeddings()
+    #embedding = OpenAIEmbeddings()
     vectorStore = FAISS.from_documents(docs, embedding = embedding) 
     return vectorStore
 
